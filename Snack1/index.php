@@ -1,6 +1,6 @@
 <?php
     $arr_matches = [
-        'first_match' => [
+        [
             'casa'=> [
             'nome' => 'Olimpia Milano',
             'punteggio' => '55'
@@ -10,7 +10,7 @@
             'punteggio' => '60'
             ],
         ],
-        'second_match' => [
+        [
             'casa'=> [
             'nome' => 'Trieste',
             'punteggio' => '66'
@@ -20,7 +20,7 @@
             'punteggio' => '83'
             ],
         ],
-        'third_match' => [
+        [
             'casa'=> [
             'nome' => 'Universo Treviso',
             'punteggio' => '77'
@@ -30,7 +30,7 @@
             'punteggio' => '79'
             ],
         ],
-        'fourth_match' => [
+            [
             'casa'=> [
             'nome' => 'Virtus Bologna',
             'punteggio' => '77'
@@ -52,6 +52,13 @@
     <title>## Snack 1</title>
 </head>
 <body>
-    <h1><?php echo array_keys($arr_matches) ?></h1>
+    <h1>Prima Giornata di Campionato LBA</h1>
+    <h3><?php 
+        for($i = 0; $i < count($arr_matches); $i++) {
+            echo 
+            '<div>' . $arr_matches[$i]['casa']['nome'] . ' - ' . $arr_matches[$i]['ospite']['nome'] . ' | ' . 
+            $arr_matches[$i]['casa']['punteggio'] . ' - ' . $arr_matches[$i]['ospite']['punteggio'] . '</div>';
+        }
+    ?></h3>
 </body>
 </html>
