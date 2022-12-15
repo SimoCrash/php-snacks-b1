@@ -1,36 +1,20 @@
 <?php
-    // if (isset($_GET['name'])) {
-	// 	$mail = $_GET['mail'];
 
-	// 	$pos_at = strpos($mail, '@');
+    $name = isset($_GET['name']) ? $_GET['name'] : '';
+    $mail = $_GET['mail'] ?? ''; //?? = isset($_GET['mail']) ? $_GET['mail'] :
+    $age = $_GET['age'] ?? '';
 
-	// 	if ($pos_at && strpos($mail, '.', $pos_at)) {
-	// 		$message = 'OK mail valida!';
-	// 	} else {
-	// 		$message = 'KO mail NON valida!';
-	// 	}
-	// } else {
-	// 	$mail = '';
-	// 	$message = 'Mail non inserita';
-	// };
 
-    $name = $_GET['name'];
-    $mail = $_GET['mail'];
-    $age = $_GET['age'];
+    $pos_at = strpos($mail, '@');
+    $pos_dot = strpos($mail, '.', $pos_at);
 
-    if (isset($_GET['name'])) {
-        $name = $_GET['name']; 
-        if (!preg_match('/^[a-z0-9_-]{3,15}$/', $name)) {
-            echo $message = "Lo username non è valido";
-        } else {
-            echo $message = "Username valido";
-        }
+                                                    //0 !== false         //0 !== false
+    if(strlen($name) > 3 && is_numeric($age) && $pos_at !== false && $pos_dot !== false){ //$pos_at !== false significa che se il valore della @ è la prima posizione(quindi 0) darrebbe false, mentre cosi sostituisce lo 0 con true, cioe se è false(0) è true. cosi si riferisce alla posizione 0, mentre con != si riferiva al valore 0
+        $message = 'accesso riuscito';
     } else {
-        $name = '';
-        $message = '';
+        $message = 'accesso negato';
     }
 
-    
 
 ?>
 
@@ -45,15 +29,13 @@
 <body>
     <form action="" method="GET">
         <label for="name">Name</label>
-        <input type="text" name="name" id="name">
+        <input type="text" name="name" id="name" value=<?= $name ?>>
         <label for="mail">Mail</label>
-        <input type="text" name="mail" id="mail">
+        <input type="text" name="mail" id="mail" value=<?= $mail ?>>
         <label for="age">Age</label>
-        <input type="text" name="age" id="age">
+        <input type="text" name="age" id="age" value=<?= $age ?>>
         <button>Invia</button>
     </form>
-    <div><?php
-        $name
-    ?></div>
+    <div><?= $message ?></div>
 </body>
 </html>
